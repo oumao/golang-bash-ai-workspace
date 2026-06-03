@@ -1,0 +1,70 @@
+# Hooks Configuration
+# Event-based callbacks and handlers
+
+hooks:
+  - name: "on_agent_start"
+    description: "Called when agent starts"
+    triggers:
+      - agent_initialized
+    actions:
+      - log_event
+      - load_context
+      - check_api_availability
+  
+  - name: "on_skill_execution"
+    description: "Called before and after skill execution"
+    triggers:
+      - skill_started
+      - skill_completed
+      - skill_failed
+    actions:
+      - log_execution
+      - update_metrics
+      - handle_errors
+  
+  - name: "on_workflow_step"
+    description: "Called for each workflow step"
+    triggers:
+      - step_started
+      - step_completed
+      - step_failed
+    actions:
+      - validate_output
+      - trigger_next_step
+      - collect_metrics
+  
+  - name: "on_error"
+    description: "Called when errors occur"
+    triggers:
+      - execution_error
+      - api_error
+      - timeout_error
+    actions:
+      - log_error
+      - retry_if_applicable
+      - notify_user
+  
+  - name: "on_learning_milestone"
+    description: "Called when learning milestones are reached"
+    triggers:
+      - exercise_completed
+      - concept_understood
+      - progress_made
+    actions:
+      - congratulate_user
+      - suggest_next_topic
+      - save_progress
+
+# Hook execution settings
+execution:
+  timeout_seconds: 5
+  max_concurrent_hooks: 3
+  log_all_events: true
+  
+# Event logging
+logging:
+  enabled: true
+  log_file: "logs/hooks.log"
+  log_level: "INFO"
+  include_timestamp: true
+  include_context: true

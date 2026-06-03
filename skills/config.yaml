@@ -1,0 +1,105 @@
+# Skills Configuration
+# Defines available tools and capabilities for agents
+
+skills:
+  - name: "execute_go"
+    description: "Execute Go code and return results"
+    category: "execution"
+    parameters:
+      - name: "code"
+        type: "string"
+        description: "Go code to execute"
+        required: true
+      - name: "timeout"
+        type: "integer"
+        description: "Execution timeout in seconds"
+        required: false
+        default: 10
+    
+  - name: "execute_bash"
+    description: "Execute Bash commands and return results"
+    category: "execution"
+    parameters:
+      - name: "command"
+        type: "string"
+        description: "Bash command to execute"
+        required: true
+      - name: "timeout"
+        type: "integer"
+        description: "Execution timeout in seconds"
+        required: false
+        default: 10
+    
+  - name: "read_file"
+    description: "Read file contents"
+    category: "file_operations"
+    parameters:
+      - name: "path"
+        type: "string"
+        description: "File path to read"
+        required: true
+    
+  - name: "write_file"
+    description: "Write content to a file"
+    category: "file_operations"
+    parameters:
+      - name: "path"
+        type: "string"
+        description: "File path to write to"
+        required: true
+      - name: "content"
+        type: "string"
+        description: "Content to write"
+        required: true
+    
+  - name: "search_documentation"
+    description: "Search Go and Bash documentation"
+    category: "search"
+    parameters:
+      - name: "language"
+        type: "string"
+        enum: ["go", "bash"]
+        description: "Programming language to search"
+        required: true
+      - name: "query"
+        type: "string"
+        description: "Search query"
+        required: true
+    
+  - name: "create_example"
+    description: "Generate code examples for Go or Bash"
+    category: "generation"
+    parameters:
+      - name: "language"
+        type: "string"
+        enum: ["go", "bash"]
+        description: "Target programming language"
+        required: true
+      - name: "topic"
+        type: "string"
+        description: "Topic or feature to generate example for"
+        required: true
+      - name: "complexity"
+        type: "string"
+        enum: ["beginner", "intermediate", "advanced"]
+        description: "Complexity level"
+        required: false
+        default: "beginner"
+
+# Skill categories and execution settings
+categories:
+  execution:
+    timeout: 30
+    require_confirmation: false
+  
+  file_operations:
+    timeout: 10
+    require_confirmation: true
+  
+  search:
+    timeout: 5
+    require_confirmation: false
+  
+  generation:
+    timeout: 15
+    require_confirmation: false

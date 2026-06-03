@@ -1,0 +1,24 @@
+# Agent Configuration
+# Defines available agents and their parameters
+
+agents:
+  - name: "main-agent"
+    description: "Main agentic AI powered by Claude"
+    model: "claude-3-5-sonnet-20241022"
+    max_tokens: 2048
+    temperature: 0.7
+    system_prompt_file: "../steering/system_prompt.yaml"
+    
+  - name: "learning-assistant"
+    description: "Assistant for learning Go and Bash"
+    model: "claude-3-5-sonnet-20241022"
+    max_tokens: 1024
+    temperature: 0.5
+    system_prompt_file: "../steering/learning_assistant.yaml"
+
+# Agent behavior configuration
+behavior:
+  max_iterations: 10
+  timeout_seconds: 30
+  retry_on_error: true
+  max_retries: 3

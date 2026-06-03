@@ -1,0 +1,100 @@
+# Workflow Configuration
+# Defines multi-step workflows and orchestration patterns
+
+workflows:
+  - name: "learn_go_basics"
+    description: "Learning workflow for Go basics"
+    steps:
+      - step_id: 1
+        name: "Introduction"
+        action: "display_content"
+        content: "Let's learn Go basics together!"
+      
+      - step_id: 2
+        name: "Run Hello World"
+        action: "execute_go"
+        parameters:
+          code: |
+            package main
+            import "fmt"
+            func main() {
+              fmt.Println("Hello, World!")
+            }
+      
+      - step_id: 3
+        name: "Explain Variables"
+        action: "generate_explanation"
+        parameters:
+          topic: "variables in Go"
+          level: "beginner"
+      
+      - step_id: 4
+        name: "Practice Exercise"
+        action: "create_exercise"
+        parameters:
+          topic: "variables"
+          language: "go"
+          difficulty: "beginner"
+    
+    next_workflow: "learn_go_functions"
+  
+  - name: "learn_bash_basics"
+    description: "Learning workflow for Bash basics"
+    steps:
+      - step_id: 1
+        name: "Introduction"
+        action: "display_content"
+        content: "Let's learn Bash scripting basics!"
+      
+      - step_id: 2
+        name: "Run Hello World"
+        action: "execute_bash"
+        parameters:
+          command: "echo 'Hello from Bash!'"
+      
+      - step_id: 3
+        name: "Explain Variables"
+        action: "generate_explanation"
+        parameters:
+          topic: "variables in Bash"
+          level: "beginner"
+      
+      - step_id: 4
+        name: "Practice Exercise"
+        action: "create_exercise"
+        parameters:
+          topic: "variables"
+          language: "bash"
+          difficulty: "beginner"
+    
+    next_workflow: "learn_bash_functions"
+  
+  - name: "agentic_task_execution"
+    description: "General agentic task execution workflow"
+    steps:
+      - step_id: 1
+        name: "Parse Intent"
+        action: "parse_user_intent"
+      
+      - step_id: 2
+        name: "Select Skills"
+        action: "select_relevant_skills"
+      
+      - step_id: 3
+        name: "Execute Skills"
+        action: "execute_skills_sequence"
+      
+      - step_id: 4
+        name: "Synthesize Results"
+        action: "combine_results"
+      
+      - step_id: 5
+        name: "Provide Response"
+        action: "format_response"
+
+# Workflow control settings
+execution:
+  parallel_execution: false
+  skip_on_error: false
+  log_all_steps: true
+  save_results: true
